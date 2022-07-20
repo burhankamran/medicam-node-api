@@ -1,0 +1,105 @@
+<%- include('./includes/head.ejs') %>
+<%- include('./includes/ion-scripts.ejs') %>
+
+</head>
+<body>
+  <%- include('./includes/navigation.ejs') %>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col size-md="6" offset-md="3">
+              <% if(errorMessage) { %>  
+                <ion-card color="danger">
+                    <ion-card-header>
+                        <ion-card-title>Invalid Data</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                       <p><%= errorMessage%></p>
+                      </ion-card-content>
+                </ion-card>
+                <% } %>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <%if(editing){%>
+    <form action="/admin/edit-product" method="POST" enctype="multipart/form-data">
+    <% } else{ %>
+      <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
+      <% } %> 
+        <ion-grid >
+        <ion-row>
+         
+         
+            <ion-col size-md="6" offset-md="3">
+              <ion-list>
+                <ion-card>
+                    <ion-card-header>
+                      
+                        <ion-card-title color="dark"><%=pageTitle%></ion-card-title>
+                      </ion-card-header>
+                <ion-card-content>
+        <ion-item>
+            <ion-label position="floating">Product Title</ion-label>
+            <ion-input type="text" name="title"
+            value="<%= oldInputs.title  %>"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            
+      <label >Product Category:</label>
+      <select  class="form-control" id="sel1" name="category">
+        <option value="" disabled selected>Select your option</option>
+        <option>Equipment</option>
+        <option>Medicine</option>
+      </select>
+      <br>
+          </ion-item>
+        <ion-item>
+        <ion-label position="stacked">Image of product</ion-label>
+        <ion-input type="file" name="image"
+        value="<%= oldInputs.imageUrl1  %>"
+        ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">2nd  Image of product(Optional)</ion-label>
+            <ion-input type="file" name="image2"
+            value="<%= oldInputs.ImageUrl2  %>"
+            ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">3rd  Image of product(Optional)</ion-label>
+                <ion-input type="file" name="image3"
+                value="<%= oldInputs.ImageUrl3  %>"
+                ></ion-input>
+                  </ion-item>
+          <ion-item>
+            <ion-label position="floating">Price</ion-label>
+            <ion-input type="number" name="price"
+            value="<%= oldInputs.price  %>"
+            ></ion-input>
+          </ion-item>
+          <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+          <input type="hidden" name="productId" 
+          value="<%= oldInputs.id  %>">
+          <ion-item>
+            <ion-label position="floating">Description</ion-label>
+          <ion-textarea name="description" value="<%= oldInputs.desription %>"></ion-textarea>
+          </ion-item>
+          <div class="ion-text-center ion-margin-top">
+         
+          <% if(editing) {%>
+            <ion-button type="submit" color="dark" >Save Changes</ion-button>
+            <% } else { %>
+              <ion-button type="submit" color="dark" >Add Product</ion-button>
+              <% } %>
+        </div>
+        </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-grid>
+        </ion-col>
+        </ion-row>
+    </form>
+
+    
+    <%- include('../includes/end.ejs') %>

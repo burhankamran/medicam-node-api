@@ -1,0 +1,103 @@
+
+<%- include('../includes/head.ejs') %>
+
+	<link rel="stylesheet" type="text/css" href="/css/cart.css">
+
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+	<%- include('../includes/navigation.ejs') %>
+
+    <% if(cartData.length>0){ %>
+<div class="container">
+
+	<h1>Shopping Cart</h1>
+ 
+	<div class="cart">
+
+		<div class="products">
+            <% cartData.map(product=>{ %>
+			<article>
+			<div class="product">
+
+				<img src="/<%= product.imageUrl1%>">
+
+				<div class="product-info">
+
+					<h3 class="product-name"><%= product.title %></h3>
+
+					<h4 class="product-price">Rs<%= product.price  %></h4>
+
+				 <!--	<h4 class="product-offer">50%</h4> -->
+
+					<p class="product-quantity">Qnt: <input readonly value="<%= product.cartItems.qty %>" name="">
+
+					<p class="product-remove">
+                      <input name="productId" value="<%= product.id %>" type="hidden" >
+					  <input name="_csrf" value=" <%= csrfToken %>" type="hidden" >
+						<i class="fa fa-trash" aria-hidden="true"></i>
+
+                        <a onclick="deleteProduct(this)"  class="remove">Remove</a>
+					</p>
+
+				</div>
+
+			</div>
+		</article>
+          <% }) %>
+		
+
+		</div>
+
+		<div class="cart-total">
+
+			<p>
+
+				<span>Total Price</span>
+
+				<span id="p1">Rs<%= totalPrice %></span>
+
+			</p>
+
+			<p>
+
+				<span>Number of Items</span>
+
+				<span id="p2"><%= cartData.length %></span>
+
+			</p>
+
+			<p>
+
+				
+			</p>
+
+			<a id="order-btn"  href="#">Proceed to Checkout</a>
+
+		</div>
+
+	</div>
+
+</div>
+   <% } else{  %>
+    <h1>No Products In Cart</h1>
+	<% } %>
+
+	<% if(cartData.length>0){ %>
+	<script src="/js/scriptCart.js"></script>
+
+	<script src="https://js.stripe.com/v3/"></script> 
+	<script>
+		var stripe=Stripe('pk_test_51JK4DZBtV3MZSR8CW9hmXaZ4gQIhY3FixAAWn3CxH2Etz1BpNLwzybKNcp6Z7rinql7n010M00gCueYfGfnqmDI600vJ0xkvzC')
+		var btn=document.getElementById('order-btn');
+		btn.addEventListener('click',function(){
+		//we dont send now to backend let it handle by stripe
+			stripe.redirectToCheckout({
+				sessionId:'<%= sessionId  %>'
+			});
+		});
+	</script>
+	 <% } %>
+	  <%- include('../includes/end.ejs') %>

@@ -1,0 +1,36 @@
+
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/css/product_admin.css">
+</head>
+<body>
+      <%- include('./includes/navigation.ejs') %>
+
+
+
+<div class="flex-con">
+      <% for(let product of prods){ %>
+            <article>
+      <div class="concon">
+           <img src="/<%= product.imageUrl1 %>" alt="<%= product.title %>">
+           <div class="indo">
+           <h1><%= product.title %></h1>
+           <p>$<%= product.price %></p>
+           <p><%= product.description %></p>
+           </div>
+           <div class="btn-sty">
+           <a href="/admin/edit-product/<%= product.id %>">Edit</a>
+           <a  onclick="deleteProduct(this)" type="button">Delete</a>
+           <input id="p1" type="hidden"
+           name="_csrf" value="<%= csrfToken %>" >
+          <input id="p2" type="hidden"
+           name="productId" value="<%= product.id %>">
+           </div>
+         
+      </div>
+      </article>
+      <% } %>
+    
+      <script src="/js/admin_delete.js"></script> 
+</div>
+<%- include('./includes/end.ejs') %>

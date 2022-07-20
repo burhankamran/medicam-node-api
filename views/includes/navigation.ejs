@@ -1,0 +1,39 @@
+<nav class="navbar">
+  <div class="brand-title">Care Pharma+</div>
+  <a href="#" class="toggle-button">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </a>
+  <div class="navbar-links">
+    <ul>
+      <li class="<%= path==='/index' ? 'active' : '' %>">
+        <a href="/index">Home</a>
+      </li>
+      <% if(isAuthenticated) { %>
+        <li>
+        <a href="/cart">Cart<i class="fa fa-shopping-cart y"
+          ></i></a>
+        </li>
+      
+    
+      <li>  
+       <form action="/logout" method="POST">
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+         <button type="submit">Logout<i class="fa fa-sign-out y"
+          ></i></button>
+    </form>
+     </li>
+     <% } else{ %>
+       <li  class="<%= path==='/signup' ? 'active' : '' %>">
+        <a href="/signup">SignUp</a>
+      </li>
+        <li class="<%= path==='/login' ? 'active' : '' %>">
+       <a href="/login">Login<i class="fa fa-sign-in y"
+        ></i></a>
+        </li>
+       <% } %>
+        
+    </ul>
+  </div>
+</nav>

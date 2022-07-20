@@ -1,0 +1,90 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/product_admin.css">
+
+</head>
+<body>
+  <%- include('../includes/navigation.ejs') %>
+      <div class="container">
+        <h2></h2>  
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+      
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="https://i.ytimg.com/vi/rNVdoCTLn5o/maxresdefault.jpg" alt="Los Angeles" style="width:100%;height: 500px">
+            </div>
+      
+            <div class="item">
+              <img src="https://images.everydayhealth.com/images/what-doctors-and-specialists-treat-skin-cancer-722x406.jpg"alt="Chicago" style="width:100%;height: 500px">
+            </div>
+          
+            <div class="item">
+              <img src="https://i.pinimg.com/originals/cb/f5/bf/cbf5bfc2edfea803bc1a447c1c516b21.jpg" alt="New york" style="width:100%; height: 500px">
+            </div>
+          </div>
+      
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex-yty">
+     <a href="/index/Equipment">Equipment</a>
+     <a href="/index/Medicine">Medicine</a>
+     <a href="/index">All</a>
+    </div>
+
+      <div class="flex-con">
+        <% for(let product of prods){ %>
+              <article>
+        <div class="concon">
+             <img src="/<%= product.imageUrl1 %>" alt="<%= product.title %>">
+             <div class="indo">
+             <h1><%= product.title %></h1>
+             <p>Rs.<%= product.price %></p>
+             <p><%= product.description %></p>
+             </div>
+             <div class="btn-sty">
+             
+             <a href="/product/<%= product.id %>"  type="button">Details</a>
+             </div>
+           
+        </div>
+        </article>
+        <% } %>
+   
+      </div> 
+      <div class="pagination">
+        <% if(currentPage!==1 &&previousPage!==1){ %> <a class="btn btn-primary" href="?page=1">1</a><% } %>
+         
+        <% if(hasPreviousPage){ %>
+         <a class="btn btn-primary" href="?page=<%= previousPage %>"><%= previousPage %></a>
+          <% } %>
+          
+        <a class="btn btn-primary" href="?page=<%= currentPage %>" class="active"><%= currentPage %></a>
+         
+         <% if(hasNextPage){ %>
+         <a class="btn btn-primary" href="?page=<%= nextPage %>"><%= nextPage %></a>
+          <% } %>
+          <% if(lastPage!==currentPage && nextPage!==lastPage){ %>
+          <a class="btn btn-primary" href="?page=<%= lastPage %>" ><%= lastPage %></a>
+         <% } %>
+        </div>  
+      </div>
+      <%- include('../includes/end.ejs') %>

@@ -1,0 +1,58 @@
+<%- include('../includes/head.ejs') %>
+<%- include('../includes/ion-scripts.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <ion-grid>
+        <ion-row>
+            <ion-col size-md="6" offset-md="3">
+              <% if(errorMessage) { %>  
+                <ion-card color="danger">
+                    <ion-card-header>
+                        <ion-card-title>Invalid Data</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                       <p><%= errorMessage%></p>
+                      </ion-card-content>
+                </ion-card>
+                <% } %>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <form action="/login" method="POST"  novalidate>
+       
+        <ion-grid >
+        <ion-row>
+            
+            <ion-col size-md="6" offset-md="3">
+                <ion-card>
+                    <ion-card-header>
+                      
+                        <ion-card-title color="dark"><%=pageTitle%></ion-card-title>
+                      </ion-card-header>
+                <ion-card-content>
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" name="email"
+            value="<%= oldInputs.email  %>"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" name="password"
+            value="<%= oldInputs.password  %>"
+            ></ion-input>
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+          </ion-item>
+          <div class="ion-text-center ion-margin-top">
+          <ion-button type="submit" color="dark" >Login</ion-button>
+        </div>
+        <a style="font-size: medium;" href="/reset">Forget your password?</a>
+        </ion-card-content>
+    </ion-card>
+        </ion-col>
+        </ion-row>
+        </ion-grid>
+    </form>
+    <%- include('../includes/end.ejs') %>

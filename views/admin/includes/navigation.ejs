@@ -1,0 +1,34 @@
+<nav class="navbar">
+  <div class="brand-title">Care Pharma+(Admin Panel)</div>
+  <a href="#" class="toggle-button">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </a>
+  <div class="navbar-links">
+    <ul>
+   
+      <% if(isAuthenticated) { %>
+        
+      
+    
+      <li>  
+       <form action="/admin/logout" method="POST">
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+         <button type="submit">Logout<i class="fa fa-sign-out y"
+          ></i></button>
+    </form>
+     </li>
+     <% } else{ %>
+       <li  class="<%= path==='/signup' ? 'active' : '' %>">
+        <a href="/admin/signup">SignUp</a>
+      </li>
+        <li class="<%= path==='/login' ? 'active' : '' %>">
+       <a href="/admin/login">Login<i class="fa fa-sign-in y"
+        ></i></a>
+        </li>
+       <% } %>
+        
+    </ul>
+  </div>
+</nav>

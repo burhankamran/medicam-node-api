@@ -1,0 +1,96 @@
+.flex-con
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 100px;
+}
+
+
+.concon
+{
+    background-color: #C0C0C0;
+    width: 400px;
+    height: 400px;
+    margin: 15px;
+    text-align: center;
+    border: solid;
+    border-radius: 20px;
+    border-color: #C0C0C0;
+    box-shadow:   5px 5px 5px 5px  #AFAFAF;
+}
+
+.concon img{
+    
+    margin-top: 5px;
+    width: 300px;
+    height: 200px;
+}
+
+.btn-sty a {
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    text-decoration: none;
+    border-color: black;
+    color: white;
+    background-color: black;
+}
+.btn-sty
+{
+    margin-top: 30px;
+}
+
+h1
+{
+    color: black;
+    font-style:italic
+}
+.btn-sty a:hover {
+    background-color: #555;
+  }
+
+@media only screen and (max-width: 600px) {
+    .concon
+{
+    background-color: #C0C0C0;
+    width: 320px;
+    height: 400px;
+    margin: 15px;
+    text-align: center;
+    border: solid;
+    border-radius: 20px;
+    border-color: #C0C0C0;
+    box-shadow:   5px 5px 5px 5px  #AFAFAF;
+}
+.flex-con
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 2px;
+}
+  }
+
+  .flex-yty{
+      margin: 40px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+     background-color: #555;
+      align-items: center;
+      text-align: center;
+  }
+
+
+  .flex-yty a{
+      text-decoration: none;
+      margin:10px;
+      color: white;
+  }
+
+  .flex-yty a:hover{
+   color: rgb(23, 23, 216); 
+  }
